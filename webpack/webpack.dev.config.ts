@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 import CopyPlugin from "copy-webpack-plugin";
+import ESLintPlugin from "eslint-webpack-plugin";
 
 const devServer: DevServerConfiguration = {
   static: {
@@ -75,6 +76,9 @@ const config: Configuration = {
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
+    }),
+    new ESLintPlugin({
+      extensions: ["js", "jsx", "ts", "tsx"],
     }),
     new HotModuleReplacementPlugin(),
   ],
