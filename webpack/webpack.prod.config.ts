@@ -6,6 +6,7 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyPlugin from "copy-webpack-plugin";
 import WebpackAssetsManifest from "webpack-assets-manifest";
+import ESLintPlugin from "eslint-webpack-plugin";
 
 const config: Configuration = {
   mode: "production",
@@ -75,7 +76,9 @@ const config: Configuration = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
-
+    new ESLintPlugin({
+      extensions: ["js", "jsx", "ts", "tsx"],
+    }),
     new CleanWebpackPlugin(),
   ],
 };
