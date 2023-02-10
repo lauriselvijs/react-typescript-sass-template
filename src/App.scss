@@ -1,8 +1,9 @@
-$primary-color: yellow;
-$secondary-color: blue;
+$primary-color: blue;
 
 .app {
-  color: $secondary-color;
   background-color: $primary-color;
-  font-size: 44px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

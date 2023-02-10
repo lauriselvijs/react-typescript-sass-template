@@ -1,11 +1,10 @@
-import React from "react";
 import "./App.scss";
-import HappyFace from "./assets/happy-face.png";
+import happyFace from "./assets/happy-face.png";
 
 const App = () => {
   return (
     <div className="app">
-      <img src={HappyFace} alt="happy face" className="app__image" />
+      <img src={happyFace} alt="happy face" />
     </div>
   );
 };
