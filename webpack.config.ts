@@ -127,7 +127,8 @@ const config: Configuration = {
             },
           }),
           new CompressionPlugin({
-            algorithm: "brotliCompress",
+            algorithm: "gzip",
+            deleteOriginalAssets: false,
             threshold: 1 * 1024,
           }),
         ]
