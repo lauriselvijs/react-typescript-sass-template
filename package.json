@@ -10,7 +10,7 @@
     "docker:client-build": "docker-compose -f *.dev.yml exec client npm run build",
     "docker:client-remove-build": "docker-compose -f *.dev.yml exec client rm -r build",
     "docker:dev-client-shell": "docker-compose -f *.dev.yml exec client sh",
-    "start": "webpack serve",
+    "start": "NODE_ENV=development webpack serve",
     "build": "NODE_ENV=production webpack"
   },
   "keywords": [
@@ -46,6 +46,7 @@
     "compression-webpack-plugin": "^10.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
+    "dotenv": "^16.0.3",
     "eslint": "^8.18.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",

@@ -8,6 +8,10 @@ import ESLintPlugin from "eslint-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
 import CompressionPlugin from "compression-webpack-plugin";
+import * as dotenv from "dotenv";
+import webpack from "webpack";
+
+dotenv.config();
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -38,7 +42,7 @@ const config: Configuration = {
       {
         test: /\.(ts|js)x?$/i,
         exclude: /node_modules/,
-        use: ["babel-loader"],
+        use: "babel-loader",
       },
       {
         test: /\.(s(a|c)ss)$/,
@@ -98,6 +102,9 @@ const config: Configuration = {
         { from: "./public/logo192.png", to: "./" },
         { from: "./public/logo512.png", to: "./" },
       ],
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
     }),
     ...(!isProduction
       ? [
