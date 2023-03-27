@@ -7,6 +7,8 @@
     "docker:dev-up": "docker-compose -f *.dev.yml up",
     "docker:dev-down": "docker-compose -f *.dev.yml down",
     "docker:dev-build": "docker-compose -f *.dev.yml build",
+    "docker:client-build": "docker-compose -f *.dev.yml exec client npm run build",
+    "docker:client-remove-build": "docker-compose -f *.dev.yml exec client rm -r build",
     "docker:dev-client-shell": "docker-compose -f *.dev.yml exec client sh",
     "start": "webpack serve",
     "build": "NODE_ENV=production webpack"
