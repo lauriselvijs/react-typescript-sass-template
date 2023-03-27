@@ -106,11 +106,11 @@ const config: Configuration = {
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env),
     }),
+    new ESLintPlugin({
+      extensions: ["js", "jsx", "ts", "tsx"],
+    }),
     ...(!isProduction
       ? [
-          new ESLintPlugin({
-            extensions: ["js", "jsx", "ts", "tsx"],
-          }),
           new ForkTsCheckerWebpackPlugin({
             async: false,
           }),
