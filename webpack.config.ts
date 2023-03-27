@@ -72,6 +72,10 @@ const config: Configuration = {
           },
         },
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/inline",
+      },
     ],
   },
   resolve: {
