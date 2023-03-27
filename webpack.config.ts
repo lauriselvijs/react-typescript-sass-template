@@ -13,11 +13,9 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const devServer: DevServerConfiguration = {
   static: {
-    directory: path.join(__dirname, "src"),
+    directory: path.resolve(__dirname, "src"),
   },
-  historyApiFallback: {
-    index: "build/index.html",
-  },
+  historyApiFallback: true,
   compress: true,
   hot: true,
   open: true,
@@ -27,12 +25,12 @@ const devServer: DevServerConfiguration = {
 const config: Configuration = {
   mode: isProduction ? "production" : "development",
   output: {
-    path: path.join(__dirname, "build"),
+    path: path.resolve(__dirname, "build"),
     filename: "static/js/main.[contenthash].js",
     clean: true,
     assetModuleFilename: "static/media/[name].[contenthash][ext]",
   },
-  entry: path.join(__dirname, "src/index.tsx"),
+  entry: path.resolve(__dirname, "src/index.tsx"),
   devtool: "source-map",
   devServer,
   module: {
@@ -45,7 +43,7 @@ const config: Configuration = {
       {
         test: /\.(s(a|c)ss)$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          isProduction ? MiniCssExtractPlugin.loader : "style-loader",
           "css-loader",
           "postcss-loader",
           "resolve-url-loader",
@@ -59,7 +57,11 @@ const config: Configuration = {
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+        use: [
+          isProduction ? MiniCssExtractPlugin.loader : "style-loader",
+          "css-loader",
+          "postcss-loader",
+        ],
       },
       {
         test: /\.(svg|png|jpg|jpeg|gif)$/i,
