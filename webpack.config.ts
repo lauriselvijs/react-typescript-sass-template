@@ -16,12 +16,7 @@ dotenv.config();
 const isProduction = process.env.NODE_ENV === "production";
 
 const devServer: DevServerConfiguration = {
-  static: {
-    directory: path.resolve(__dirname, "src"),
-  },
   historyApiFallback: true,
-  compress: true,
-  hot: true,
   open: true,
   port: 3000,
 };
@@ -126,7 +121,6 @@ const config: Configuration = {
           }),
           new CompressionPlugin({
             algorithm: "gzip",
-            deleteOriginalAssets: false,
             threshold: 1 * 1024,
           }),
         ]
