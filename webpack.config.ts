@@ -45,26 +45,13 @@ const config: Configuration = {
         use: "babel-loader",
       },
       {
-        test: /\.(s(a|c)ss)$/,
+        test: /\.(s(a|c)ss|css)$/i,
+        exclude: /node_modules/,
         use: [
           isProduction ? MiniCssExtractPlugin.loader : "style-loader",
           "css-loader",
           "postcss-loader",
-          "resolve-url-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.css$/i,
-        use: [
-          isProduction ? MiniCssExtractPlugin.loader : "style-loader",
-          "css-loader",
-          "postcss-loader",
+          "sass-loader",
         ],
       },
       {
@@ -83,7 +70,7 @@ const config: Configuration = {
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".ts", "jsx", ".js"],
   },
   plugins: [
     new HtmlWebpackPlugin({
