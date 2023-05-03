@@ -1,11 +1,14 @@
-version: "3"
+version: "3.9"
 services:
-  client:
+  app:
+    image: react-app:development
     build:
       context: .
       dockerfile: Dockerfile.dev
+      args:
+        NODE_VERSION: 18
+    user: "${UID}:${GID}"
     ports:
       - "3000:3000"
     volumes:
-      - "/app/node_modules"
       - "./:/app"

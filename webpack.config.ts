@@ -51,6 +51,7 @@ const config: Configuration = {
       },
       {
         test: /\.(svg|png|jpg|jpeg|gif)$/i,
+        exclude: /node_modules/,
         type: "asset",
         parser: {
           dataUrlCondition: {
@@ -60,6 +61,7 @@ const config: Configuration = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        exclude: /node_modules/,
         type: "asset/inline",
       },
     ],
@@ -71,11 +73,6 @@ const config: Configuration = {
     new HtmlWebpackPlugin({
       filename: "./index.html",
       template: "./public/index.html",
-      favicon: "./public/favicon.ico",
-      manifest: "./public/manifest.json",
-    }),
-    new MiniCssExtractPlugin({
-      filename: "static/css/main.[contenthash].css",
     }),
     new CopyPlugin({
       patterns: [
@@ -100,6 +97,9 @@ const config: Configuration = {
       : []),
     ...(isProduction
       ? [
+          new MiniCssExtractPlugin({
+            filename: "static/css/main.[contenthash].css",
+          }),
           new ImageMinimizerPlugin({
             minimizer: {
               implementation: ImageMinimizerPlugin.imageminMinify,
